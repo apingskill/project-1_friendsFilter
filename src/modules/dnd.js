@@ -1,6 +1,6 @@
 function makeDnDInit(zones, listAll, listSelected, leftFriends, rightFriends) {
     let currentDrag;
-
+    
     zones.forEach(zone => {
         zone.addEventListener('dragstart', (e) => {
             e.dataTransfer.setData('text/html', 'dragstart');
@@ -22,23 +22,23 @@ function makeDnDInit(zones, listAll, listSelected, leftFriends, rightFriends) {
                         zone.insertBefore(currentDrag.node, zone.lastElementChild);
                     }
                 }
-
-                leftFriends.length = 0;
-
-                for (let i = 0; i < listAll.children.length; i++) {
-                    leftFriends.push(listAll.children[i]);
-                }
-
-                rightFriends.length = 0;
-
-                for (let i = 0; i < listSelected.children.length; i++) {
-                    rightFriends.push(listAll.children[i]);
-                }
                 
                 currentDrag = null;
             }
+
+            rightFriends.length = 0;
+            for (let i = 0; i < listSelected.children.length; i++) {
+                rightFriends.push(listSelected.children[i]);
+            }
+
+            leftFriends.length = 0;
+            for (let i = 0; i < listAll.children.length; i++) {
+                leftFriends.push(listAll.children[i]);
+            }
         })
     });
+
+    
 }
 
 export {
